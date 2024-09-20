@@ -1,0 +1,123 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.inicio{
+    width: 100%;
+    height: 100vh;
+    background-image: url('../imagenes/background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.formulario{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+.formulario h1{
+    text-align: center;
+    color: darkblue;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid darkblue;
+}
+
+.usuario label{
+    display: block;
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+
+.usuario input{
+    width: 330px;
+    height: 24px;
+    margin-left: 30px;
+    padding: 8px;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+}
+
+.password label{
+    display: block;
+    margin-left: 30px;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.password input{
+    width: 330px;
+    height: 24px;
+    margin-left: 30px;
+    padding: 8px;
+    border: 1px solid darkblue;
+    border-radius: 5px;
+}
+
+.recordar{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.recordar a{
+    color: gray;
+}
+
+.recordar a:hover{
+    color: darkblue;
+}
+
+.botones{
+    text-align: center;
+}
+
+.btn-registrar {
+    display: inline-block; /* Permite aplicar dimensiones a un enlace */
+    width: 104px;
+    height: 32px;
+    background-color: white;
+    color: darkblue;
+    border: 1px solid darkblue;
+    margin: 24px;
+    border-radius: 5px;
+    text-align: center; /* Centra el texto */
+    line-height: 32px; /* Ajusta la altura de la línea para centrar el texto verticalmente */
+    text-decoration: none; /* Elimina el subrayado del enlace */
+}
+
+.btn-registrar:hover {
+    cursor: pointer;
+    background-color: rgb(247, 216, 44);
+    color: black;
+    border: 1px solid black;
+    transition: 0.5s ease;
+}
+
+
+.btn-iniciar{
+    width: 104px;
+    height: 32px;
+    background-color: darkblue;
+    color: white;
+    border: none;
+    margin: 24px;
+    border-radius: 5px;
+}
+
+.btn-iniciar:hover{
+    cursor: pointer;
+    background-color: rgb(4, 5, 41);
+    color: white;
+    /*border: 1px solid white;*/
+    transition: 0.5s ease;
+
+}

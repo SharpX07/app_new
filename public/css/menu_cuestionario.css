@@ -1,0 +1,88 @@
+
+.galeria-cuestionario {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px, 1fr));
+    gap: 20px;
+    height: calc(100vh - 130px);
+    overflow-y: scroll;
+}
+
+.cuestionario {
+    text-align: center;
+}
+
+.cuestionario img {
+    max-width: 200px;
+    height: auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.cuestionario img:hover {
+    transform: scale(1.05);
+}
+
+.cuestionario p {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.deslizar-box {
+    width: 1280;
+    height: auto;
+    margin: 50px auto 0;
+    overflow: hidden;
+}
+
+.deslizar-box ul {
+    display: flex;
+    padding: 0;
+    width: 300%;
+    animation: slide 15s infinite alternate ease-in-out;
+}
+
+.deslizar-box li {
+    width: 100%;
+    list-style: none;
+    position: relative;
+}
+
+.deslizar-box img {
+    width: 100%;
+}
+
+@keyframes slide {
+    0% {margin-left: 0;}
+    45% {margin-left: 0;}
+    50% {margin-left: -100%;}
+    70% {margin-left: -100%;}
+    75% {margin-left: -200%;}
+    100% {margin-left: -200%;}
+}
+
+@media (max-width: 991px) {
+    .deslizar-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .barra-lateral {
+        width: 25%;
+    }
+
+    .barra-lateral h2 {
+        font-size: 20px;
+    }
+
+    .barra-lateral nav ul li a {
+        font-size: 16px;
+    }
+
+    .icono-menu {
+        width: 16px;
+        height: 16px;
+    }
+}

@@ -1,0 +1,135 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0; 
+}
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.imagen-lateral {
+    width: 50%;
+    background-color: #031139; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagen-lateral img {
+    max-width: 100%;
+    max-width: 100%; 
+}
+
+.registrarse {
+    width:85%;
+    max-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+}
+
+.formulario-registrar {
+    max-width: 100%;
+    max-width: 500px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.formulario-registrar h1 {
+    text-align: center;
+    font-size: 40px;
+    color: rgb(3, 3, 78);
+    margin-bottom: 20px;
+}
+
+
+.nombres, .apellidos, .universidad, .usuario, .password {
+    margin-bottom: 16px;
+}
+
+.nombres input, .usuario input, .completar-escuela, .completar-ciclo, .paterno, .materno, .escribir-contraseña, .escribir-confirmar {
+    width: 100%;
+    height: 32px;
+    border: 1px solid rgb(235, 200, 3);
+    border-radius: 5px;
+    padding: 8px;
+    box-sizing: border-box;
+
+}
+
+.apellidos .completar-apellidos {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.universidad {
+    display: flex;
+    gap: 10px;
+}
+
+.password {
+    display: flex;
+    gap: 10px;
+}
+
+.crear-cuenta {
+    text-align: center;
+}
+
+.btn-crear {
+    width: 100%;
+    height: 40px;
+    background-color: rgb(3, 3, 78);
+    color: white;
+    border: none;
+    margin-top: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn-crear:hover {
+    cursor: pointer;
+    background-color: rgb(2, 2, 39);
+    transition: 0.5s ease;
+}
+
+.tiene-cuenta {
+    text-align: center;
+}
+
+.tiene-cuenta a {
+    color: rgb(2, 2, 39);
+}
+
+.tiene-cuenta a:hover {
+    color: rgb(235, 200, 3);
+    transition: 0.5s ease;
+}
+
+
+@media (max-width: 768px) {
+    .imagen-lateral {
+        display: none; 
+    }
+
+    .registrarse {
+        width: 100%; 
+        
+    }
+
+    .formulario-registrar {
+        width: 90%; 
+    }
+}

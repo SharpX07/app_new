@@ -1,0 +1,94 @@
+
+.galeria-textos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(330px, 1fr));
+    gap: 20px;
+    height: calc(100vh - 130px); /* Altura ajustada para permitir scroll */
+    overflow-y: scroll;
+}
+
+.texto {
+    text-align: center;
+}
+
+.texto img {
+    width: 45%;
+    height: auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.texto img:hover {
+    transform: scale(1.05);
+}
+
+.texto p {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.deslizar-box {
+    width: 1280;
+    height: auto;
+    margin: 50px auto 0;
+    overflow: hidden;
+}
+
+.deslizar-box ul {
+    display: flex;
+    padding: 0;
+    width: 300%;
+    animation: slide 15s infinite alternate ease-in-out;
+}
+
+.deslizar-box li {
+    width: 100%;
+    list-style: none;
+    position: relative;
+}
+
+.deslizar-box img {
+    width: 100%;
+}
+
+@keyframes slide {
+    0% {margin-left: 0;}
+    45% {margin-left: 0;}
+
+    50% {margin-left: -100%;}
+    70% {margin-left: -100%;}
+
+    75% {margin-left: -200%;}
+    100% {margin-left: -200%;}
+
+    
+}
+
+@media(max-width:991px){
+    .deslizar-box{
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .barra-lateral {
+        width: 25%;
+    }
+
+    .barra-lateral h2 {
+        font-size: 20px;
+    }
+
+    .barra-lateral nav ul li a {
+        font-size: 16px;
+    }
+
+    .icono-menu {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+

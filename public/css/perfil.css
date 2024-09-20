@@ -1,0 +1,221 @@
+.separador {
+    border: 0;
+    height: 3px;
+    background-color: #312d2dfb;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: calc(100% - 20px);
+}
+
+.formulario-cuestionario {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.formulario-cuestionario label {
+    font-weight: bold;
+}
+
+.formulario-cuestionario input,
+.formulario-cuestionario select {
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+
+.contenedor-botones {
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Estilos para los botones */
+.boton-guardar{
+    padding: 10px 20px;
+    background-color: #257547;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 150px; /* Ajusta el ancho según sea necesario */
+}
+.boton-cancelar {
+    padding: 10px 20px;
+    background-color: #9b2c2c;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 150px; /* Ajusta el ancho según sea necesario */
+}
+.boton-editar{
+    padding: 10px 20px;
+    background-color: #4d7fa8;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 150px; /* Ajusta el ancho según sea necesario */
+}
+.boton-guardar:hover{
+    background-color: #257547;
+    transform: scale(1.05);
+}
+ .boton-cancelar:hover{
+    background-color: #9b2c2c;
+    transform: scale(1.05);
+}
+.boton-editar:hover{
+    background-color: #257547;
+    transform: scale(1.05);
+}
+
+/* Estilos responsivos para pantallas más pequeñas */
+@media (max-width: 768px) {
+    .contenedor-botones {
+        justify-content: center;
+    }
+
+    .boton-guardar, .boton-cancelar,.boton-editar{
+        width: 100%; /* Los botones ocuparán todo el ancho del contenedor */
+        max-width: 300px; /* Limita el ancho máximo en pantallas pequeñas */
+    }
+}
+
+
+/* Apartado de Información de Perfil */
+.informacion-perfil {
+    margin-bottom: 20px;
+    flex: 1;
+    margin-right: 20px; /* Espacio entre las columnas */
+}
+
+.informacion-perfil h2 {
+    margin-bottom: 20px; /* Aumenta el espacio debajo del título */
+}
+
+.informacion-perfil p {
+    margin-bottom: 20px; /* Aumenta el espacio debajo del título */
+}
+
+
+.informacion-perfil label, .actualizar-contrasena label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.informacion-perfil input, .informacion-perfil select, .actualizar-contrasena input {
+    padding: 10px;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 300px;
+}
+
+/* Apartado de Actualización de Contraseña */
+.actualizar-contrasena {
+    margin-bottom: 20px;
+    flex: 1;
+}
+
+.actualizar-contrasena h2 {
+    margin-bottom: 20px; /* Aumenta el espacio debajo del título */
+}
+
+.actualizar-contrasena p {
+    margin-bottom: 20px; /* Aumenta el espacio debajo del título */
+}
+
+/* Contenedor para alinear los apartados en dos columnas */
+.contenedor-formularios {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Para adaptarse en pantallas más pequeñas */
+    gap: 20px; /* Añade un espacio entre las columnas */
+}
+.contenedor-apellidos {
+    display: flex;
+    gap: 20px; /* Espacio entre los apellidos */
+}
+
+
+
+/* Para pantallas pequeñas, los formularios se colocan en una sola columna */
+@media (max-width: 768px) {
+    .contenedor-formularios {
+        flex-direction: column;
+    }
+}
+
+.deslizar-box {
+    width: 1280;
+    height: auto;
+    margin: 50px auto 0;
+    overflow: hidden;
+}
+
+.deslizar-box ul {
+    display: flex;
+    padding: 0;
+    width: 300%;
+    animation: slide 15s infinite alternate ease-in-out;
+}
+
+.deslizar-box li {
+    width: 100%;
+    list-style: none;
+    position: relative;
+}
+
+.deslizar-box img {
+    width: 100%;
+}
+
+@keyframes slide {
+    0% {margin-left: 0;}
+    45% {margin-left: 0;}
+    50% {margin-left: -100%;}
+    70% {margin-left: -100%;}
+    75% {margin-left: -200%;}
+    100% {margin-left: -200%;}
+}
+
+@media (max-width: 991px) {
+    .deslizar-box {
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .barra-lateral {
+        width: 25%;
+    }
+
+    .barra-lateral h2 {
+        font-size: 20px;
+    }
+
+    .barra-lateral nav ul li a {
+        font-size: 16px;
+    }
+
+    .icono-menu {
+        width: 16px;
+        height: 16px;
+    }
+}
+

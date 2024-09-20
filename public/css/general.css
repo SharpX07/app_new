@@ -1,0 +1,347 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    height: 100vh;
+    display: flex;
+}
+
+.contenedor {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+
+.barra-lateral {
+    width: 20%;
+    background-color: #031139;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    max-width: 100%;
+}
+
+.barra-lateral h2 {
+    color: #ffffff;
+    font-size: 24px;
+    margin-bottom: 40px;
+}
+
+.barra-lateral nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.barra-lateral nav ul li {
+    margin-bottom: 20px;
+}
+
+.barra-lateral nav ul li a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease, transform 0.3s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.icono-menu {
+    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+}
+
+.barra-lateral nav ul li a.enlace-activo {
+    color: #ffffff;
+}
+
+.barra-lateral nav ul li a:hover {
+    color: #ffffff;
+    transform: scale(1.05);
+}
+
+.barra-lateral nav ul li a:hover .icono-menu {
+    transform: scale(1.2);
+}
+
+.contenido-principal {
+    width: 80%;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.contenido-principal header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.contenido-principal h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.usuario-sesion {
+    display: flex;
+    align-items: center;
+}
+
+.cerrar-sesion {
+    margin-right: 20px;
+    text-decoration: none;
+    color: #000;
+    font-weight: bold;
+    font-size: 14px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.cerrar-sesion:hover {
+    color: #d2a354;
+    transform: scale(1.05);
+}
+
+.icono-sesion img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.icono-sesion img:hover {
+    transform: scale(1.2);
+}
+
+.separador {
+    border: 0;
+    height: 3px;
+    background-color: #312d2dfb;
+    margin-bottom: 20px;
+    margin-top: 10px;
+    width: calc(100% - 20px);
+}
+
+.galeria-textos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(330px, 1fr));
+    gap: 20px;
+    height: calc(100vh - 130px); /* Altura ajustada para permitir scroll */
+    overflow-y: scroll;
+}
+
+.texto {
+    text-align: center;
+}
+
+.texto img {
+    width: 45%;
+    height: auto;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.texto img:hover {
+    transform: scale(1.05);
+}
+
+.texto p {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.slide-contenedor{
+    width: 1280;
+    height: auto;
+    margin: 20px auto 0;
+    overflow: hidden;
+    
+}
+
+.slider-wrap{
+    position: relative;
+    max-width: 48rem;
+    margin: 50px auto 0;
+}
+
+.slider{
+    display: flex;
+    overflow: auto;
+    scroll-snap-type: mandatory x;
+    scroll-behavior: smooth;
+    box-shadow: 0 1.5rem 3rem -0.75rem hsla(0, 0%, 0%,0.25);
+    border-radius: 0.5rem;
+
+}
+.slider::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+}
+
+.slider img{
+    flex: 1 0 100%;
+    scroll-snap-align: start;
+    object-fit: cover;
+    width: 100%;
+
+}
+
+.navegar{
+    display: flex;
+    column-gap: 1rem;
+    position: absolute;
+    bottom: 1.25rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+.navegar a{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #000000;
+    opacity: 0.78;
+    transition: opacity ease  250ms;
+}
+.navegar a:hover{
+    opacity: 2;
+}
+
+
+@media (max-width: 768px) {
+    .slider{
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .barra-lateral {
+        width: 25%;
+    }
+
+    .barra-lateral h2 {
+        font-size: 20px;
+    }
+
+    .barra-lateral nav ul li a {
+        font-size: 16px;
+    }
+
+    .icono-menu {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* Estilos para el contenedor del menú */
+.menu-container {
+    position: relative;
+    display: inline-block;
+    align-items: center;
+}
+
+/* Botón que activa el menú */
+.menu-button {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* Nombre del usuario */
+.user-name {
+    margin-right: 8px; /* Espacio entre el nombre y el icono */
+}
+
+/* Imagen del icono */
+.arrow-icon .icon {
+    width: 24px; /* Ajusta el tamaño de la imagen según sea necesario */
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.arrow-icon .icon:hover {
+    transform: scale(1.2);
+}
+
+/* Contenido del menú */
+.menu-content {
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    right: 0; /* Alinea el menú a la derecha del contenedor */
+    top: 100%; /* Posiciona el menú justo debajo del botón */
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Asegura que el menú aparezca por encima de otros elementos */
+    min-width: 200px; /* Ajusta el ancho mínimo del menú */
+    padding: 5px;
+}
+
+/* Mostrar el menú cuando el botón es clickeado o el contenedor es hoverado */
+.menu-container:hover .menu-content,
+.menu-container .menu-button:focus + .menu-content {
+    display: block;
+}
+
+/* Estilo para los enlaces del menú */
+.menu-link {
+    display: block;
+    padding: 12px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* Estilo para el botón de logout dentro del formulario */
+.logout-form button {
+    background: none;
+    border: none;
+    color: inherit;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Efectos al pasar el mouse sobre los enlaces */
+.menu-link:hover {
+    background-color: #f0f0f0;
+}
+
+.deslizar-box {
+    width: 1280;
+    height: auto;
+    margin: 50px auto 0;
+    overflow: hidden;
+}
+
+.deslizar-box ul {
+    display: flex;
+    padding: 0;
+    width: 300%;
+    animation: slide 15s infinite alternate ease-in-out;
+}
+
+.deslizar-box li {
+    width: 100%;
+    list-style: none;
+    position: relative;
+}
+
+.deslizar-box img {
+    width: 100%;
+}
