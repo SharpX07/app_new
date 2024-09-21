@@ -33,7 +33,7 @@ class DocumentoController extends Controller
         }
 
         // Crear un nuevo registro en la base de datos
-        Documento::create([
+        $documento_creado = Documento::create([
             'titulo' => $titulo,
             'imagen' => isset($nombreImagen) ? $nombreImagen : null, // Guardar el nombre de la imagen si existe
         ]);
@@ -45,8 +45,11 @@ class DocumentoController extends Controller
         } else {
             \Log::error("Error al guardar el archivo en {$path}");
         }
-
         
+        $documento_creado->preguntas()->create(['Pregunta_Respuestas' => 'Pregunta de ejemplo;;;;;;;;;']);
+        $documento_creado->preguntas()->create(['Pregunta_Respuestas' => 'Pregunta de ejemplo1;;;;;;;;;']);
+        $documento_creado->preguntas()->create(['Pregunta_Respuestas' => 'Pregunta de ejemplo2;;;;;;;;;']);
+        $documento_creado->preguntas()->create(['Pregunta_Respuestas' => 'Pregunta de ejemplo3;;;;;;;;;']);
 
         return redirect()->route('textos');
     }
@@ -145,7 +148,6 @@ class DocumentoController extends Controller
                 ];
             }
         }
-
         return view('menu.menu_textos', ['documentos' => $documentos_contenido]);
     }
 

@@ -14,4 +14,9 @@ class Documento extends Model
 
     // Si deseas evitar que Laravel maneje automáticamente los timestamps (creado_en y actualizado_en)
     public $timestamps = true;
+
+    public function preguntas()
+    {
+        return $this->hasMany(Pregunta::class);
+    }
 }

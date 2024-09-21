@@ -13,8 +13,11 @@ return new class extends Migration
     {
         Schema::create('preguntas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('documento_id')->constrained()->onDelete('cascade'); // Clave foránea
+            $table->text('Pregunta_Respuestas');
             $table->timestamps();
         });
+        
     }
 
     /**

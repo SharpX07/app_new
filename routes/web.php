@@ -21,7 +21,9 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-
+route::get('prueba', function () {
+    return view('agregar-preguntas');
+})->name('prueba');
 
 
 Route::get('/crear-documento', function () {
