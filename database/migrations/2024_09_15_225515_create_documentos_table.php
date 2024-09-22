@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('documentos', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
+            $table->string('titulo')->unique();
             $table->timestamps();
         });        
     }
@@ -23,6 +23,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        // Elimina la tabla dependiente (pruebas) antes de eliminar documentos
+        Schema::dropIfExists('pruebas');
+        Schema::dropIfExists('notas');
         Schema::dropIfExists('documentos');
     }
 };
