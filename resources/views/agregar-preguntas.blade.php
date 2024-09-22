@@ -20,14 +20,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/lang/summernote-es-ES.min.js"></script>
 </head>
 <body>
-    <form action="{{ route('guardar-contenido') }}" method="POST" id="content-form" enctype="multipart/form-data">
+    <form action="{{ route('guardar-preguntas') }}" method="POST" id="content-form" enctype="multipart/form-data">
         @csrf
         <!-- Preguntas -->
         <div id="preguntas-container">
-            <!-- Añade este div para mostrar la lista de preguntas y opciones -->
-            <div id="lista-preguntas-opciones" style="margin-top: 20px;"></div>
-
-
             <h3>Preguntas</h3>
             <div class="pregunta" id="pregunta_1_container">
                 <label for="pregunta_1">Pregunta:</label>
@@ -35,8 +31,7 @@
 
                 <div class="opciones-container" id="opciones_1_container">
                     <label for="opcion_1_1">Opción 1:</label>
-                    <input type="text" name="preguntas[0][opciones][]" required>
-                    <!-- <button type="button" class="eliminar-opcion" data-pregunta-id="1" data-opcion-id="1">Eliminar</button><br> -->
+                    <input type="text" id="opcion_1_1" name="preguntas[0][opciones][]" required>
                 </div>
                 <button type="button" class="agregar-opcion" data-pregunta-id="1">Agregar Opción</button><br><br>
 
@@ -49,82 +44,101 @@
 
         <!-- Botón para agregar más preguntas -->
         <button type="button" id="agregar-pregunta" title="Agregar una nueva pregunta">Agregar Pregunta</button><br><br>
-        
+        <!-- Campo oculto para las preguntas y respuestas -->
+        <input type="hidden" name="preguntas_respuestas" id="preguntas_respuestas">
+
         <!-- Botón Guardar -->
         <button type="submit" title="Guardar el contenido ingresado">Guardar Contenido</button>
     </form>
 
     <script>
         $(document).ready(function() {
-            // Inicializar Summernote para la primera pregunta
-            $('#pregunta_1').summernote({
-                placeholder: 'Ingrese la pregunta...',
-                tabsize: 2,
-                height: 100,
-                lang: 'es-ES'  // Configuración del idioma a español
-            });
-
-            // Contador para nuevas preguntas y opciones
             let preguntaCount = 1;
             let opcionCount = { 1: 1 };
 
-            // Lista de texto para preguntas y opcions en el formato: "{Pregunta}:opcion1;opcion2;opcion3"
-            let preguntasOpciones = [];
-
-
             // Función para agregar una nueva pregunta
-           // Función para agregar una nueva pregunta
-           $('#agregar-pregunta').click(function() {
-                const preguntaTexto = $(`#pregunta_${preguntaCount}`).val();
-                const opcionesTexto = $(`#opciones_${preguntaCount}_container input`).map(function() {
-                    return $(this).val();
-                }).get().join(';');
-            
-                // Guardar pregunta y opciones en la lista
-                preguntasOpciones.push(`${preguntaTexto}:${opcionesTexto}`);
-            
-                // Actualizar la visualización
-                $('#lista-preguntas-opciones').html(preguntasOpciones.join('<br>'));
-            
-                // Limpiar el campo de la pregunta y las opciones
-                $(`#pregunta_${preguntaCount}`).val('');
-                $(`#opciones_${preguntaCount}_container input`).val('');
+            $('#agregar-pregunta').click(function() {
+                preguntaCount++;
+                opcionCount[preguntaCount] = 1;
+                const nuevaPregunta = `
+                    <div class="pregunta" id="pregunta_${preguntaCount}_container">
+                        <label for="pregunta_${preguntaCount}">Pregunta:</label>
+                        <textarea id="pregunta_${preguntaCount}" name="preguntas[${preguntaCount - 1}][pregunta]" cols="30" rows="3" required></textarea><br><br>
+
+                        <div class="opciones-container" id="opciones_${preguntaCount}_container">
+                            <label for="opcion_${preguntaCount}_1">Opción 1:</label>
+                            <input type="text" id="opcion_${preguntaCount}_1" name="preguntas[${preguntaCount - 1}][opciones][]" required>
+                        </div>
+                        <button type="button" class="agregar-opcion" data-pregunta-id="${preguntaCount}">Agregar Opción</button><br><br>
+
+                        <label for="respuesta_correcta_${preguntaCount}">Respuesta Correcta:</label>
+                        <select id="respuesta_correcta_${preguntaCount}" name="preguntas[${preguntaCount - 1}][respuesta_correcta]" required>
+                            <option value="0">Opción 1</option>
+                        </select><br><br>
+                    </div>
+                `;
+                $('#preguntas-container').append(nuevaPregunta);
             });
-        
 
             // Función para agregar una nueva opción
             $(document).on('click', '.agregar-opcion', function() {
                 const preguntaId = $(this).data('pregunta-id');
                 opcionCount[preguntaId]++;
+                const nuevaOpcionId = opcionCount[preguntaId];
                 const nuevaOpcion = `
-                    <label for="opcion_${preguntaId}_${opcionCount[preguntaId]}">Opción ${opcionCount[preguntaId]}:</label>
-                    <input type="text" name="preguntas[${preguntaId - 1}][opciones][]" required>
-                    <button type="button" class="eliminar-opcion" data-pregunta-id="${preguntaId}" data-opcion-id="${opcionCount[preguntaId]}">Eliminar</button><br>
+                    <label for="opcion_${preguntaId}_${nuevaOpcionId}">Opción ${nuevaOpcionId}:</label>
+                    <input type="text" id="opcion_${preguntaId}_${nuevaOpcionId}" name="preguntas[${preguntaId - 1}][opciones][]" required>
+                    <button type="button" class="eliminar-opcion" data-pregunta-id="${preguntaId}" data-opcion-id="${nuevaOpcionId}">Eliminar</button><br>
                 `;
                 $(`#opciones_${preguntaId}_container`).append(nuevaOpcion);
 
                 // Agregar nueva opción al select de respuesta correcta
-                const nuevaOpcionSelect = `<option value="${opcionCount[preguntaId] - 1}">Opción ${opcionCount[preguntaId]}</option>`;
+                const nuevaOpcionSelect = `<option value="${nuevaOpcionId - 1}" id="select_opcion_${preguntaId}_${nuevaOpcionId}">Opción ${nuevaOpcionId}</option>`;
                 $(`#respuesta_correcta_${preguntaId}`).append(nuevaOpcionSelect);
+
+                // Manejar cambios en el texto de la opción
+                $(`#opcion_${preguntaId}_${nuevaOpcionId}`).on('input', function() {
+                    const opcionTexto = $(this).val();
+                    $(`#select_opcion_${preguntaId}_${nuevaOpcionId}`).text(opcionTexto);
+                });
             });
 
             // Función para eliminar una opción
             $(document).on('click', '.eliminar-opcion', function() {
                 const preguntaId = $(this).data('pregunta-id');
                 const opcionId = $(this).data('opcion-id');
-                $(this).prev('input').remove();  // Eliminar el input
-                $(this).prev('label').remove();  // Eliminar el label
-                $(this).next('br').remove();  // Eliminar el br
-                $(this).remove();  // Eliminar el botón
+                $(this).prev('input').remove();
+                $(this).prev('label').remove();
+                $(this).next('br').remove();
+                $(this).remove();
+                $(`#select_opcion_${preguntaId}_${opcionId}`).remove();
+            });
 
-                // Actualizar opciones en el select de respuesta correcta
-                $(`#respuesta_correcta_${preguntaId} option[value="${opcionId - 1}"]`).remove();
-                $(`#respuesta_correcta_${preguntaId} option`).each(function(index) {
-                    $(this).text(`Opción ${index + 1}`).val(index);
+            // Al enviar el formulario, guardar las preguntas y opciones en el campo oculto
+            $('#content-form').submit(function() {
+                const preguntasRespuestas = [];
+                $('.pregunta').each(function(index) {
+                    const preguntaTexto = $(this).find('textarea').val();
+                    const opciones = $(this).find('.opciones-container input').map(function() {
+                        return $(this).val();
+                    }).get();
+                    const respuestaCorrecta = $(this).find('select').val();
+                    const preguntaRespuesta = {
+                        pregunta: preguntaTexto,
+                        opciones: opciones,
+                        correcta: opciones[respuestaCorrecta]
+                    };
+                    preguntasRespuestas.push(preguntaRespuesta);
                 });
+                $('#preguntas_respuestas').val(JSON.stringify(preguntasRespuestas));
+            });
 
-                // Actualizar contadores de opciones
-                opcionCount[preguntaId]--;
+            // Inicializar el evento de cambio para las opciones existentes
+            $(document).on('input', '.opciones-container input', function() {
+                const preguntaId = $(this).closest('.pregunta').attr('id').split('_')[1];
+                const opcionId = $(this).attr('id').split('_')[2];
+                const opcionTexto = $(this).val();
+                $(`#select_opcion_${preguntaId}_${opcionId}`).text(opcionTexto);
             });
         });
     </script>

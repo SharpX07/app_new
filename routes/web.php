@@ -31,6 +31,7 @@ Route::get('/crear-documento', function () {
 })->name('crear-documento');
 
 Route::post('/guardar-contenido', [DocumentoController::class, 'guardarContenido'])->name('guardar-contenido');
+Route::post('/guardar-preguntas', [DocumentoController::class, 'guardarPreguntas'])->name('guardar-preguntas');
 Route::get('/mostrar-contenido', [DocumentoController::class, 'mostrarContenido'])->name('mostrar-contenido');
 Route::delete('/documento/{titulo}', [DocumentoController::class, 'eliminar'])->name('eliminar');
 

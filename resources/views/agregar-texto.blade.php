@@ -39,6 +39,7 @@
     </form>
 
     <script>
+        
         $('#contenido').summernote({
             placeholder: 'Ingrese el texto...',
             tabsize: 2,

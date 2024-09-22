@@ -45,13 +45,53 @@ class DocumentoController extends Controller
         } else {
             \Log::error("Error al guardar el archivo en {$path}");
         }
-        
-        $documento_creado->preguntas()->create(['Pregunta_Respuestas' => 'Pregunta de ejemplo;;;;;;;;;']);
-        $documento_creado->preguntas()->create(['Pregunta_Respuestas' => 'Pregunta de ejemplo1;;;;;;;;;']);
-        $documento_creado->preguntas()->create(['Pregunta_Respuestas' => 'Pregunta de ejemplo2;;;;;;;;;']);
-        $documento_creado->preguntas()->create(['Pregunta_Respuestas' => 'Pregunta de ejemplo3;;;;;;;;;']);
 
-        return redirect()->route('textos');
+        // Guardar el objeto documento_creado en la sesión
+        session(['documento_creado_id' => $documento_creado->id]);
+
+        return view('agregar-preguntas');
+    }
+
+    // Recibe un json con las preguntas y respuestas
+    public function guardarPreguntas(Request $request)
+    {
+        // Recuperar el ID del documento desde la sesión
+        $documentoId = session('documento_creado_id');
+        $documento_creado = Documento::find($documentoId);
+
+        if (!$documento_creado) {
+            \Log::error("Documento no encontrado con ID {$documentoId}");
+            return redirect()->route('textos')->withErrors(['error' => 'Documento no encontrado.']);
+        }
+
+        // Procesar las preguntas y respuestas
+        $preguntasRespuestasJson = $request->input('preguntas_respuestas');
+        $preguntasRespuestas = json_decode($preguntasRespuestasJson, true);
+
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            \Log::error("Error al decodificar JSON: " . json_last_error_msg());
+            return redirect()->route('textos')->withErrors(['error' => 'Error al procesar las preguntas y respuestas.']);
+        }
+
+        foreach ($preguntasRespuestas as $preguntaRespuesta) {
+            // Validar que el JSON tenga el formato correcto
+            if (!isset($preguntaRespuesta['pregunta'], $preguntaRespuesta['opciones'], $preguntaRespuesta['correcta'])) {
+                throw new \Exception('Formato de pregunta inválido.');
+            }
+            $pregunta = $preguntaRespuesta['pregunta'];
+            $opciones = $preguntaRespuesta['opciones'];
+            $respuestaCorrecta = $preguntaRespuesta['correcta'];
+            // Crear la pregunta
+            $preguntaModel = $documento_creado->preguntas()->create(['Pregunta_Respuestas' => $pregunta]);
+            // Guardar las opciones
+            foreach ($opciones as $opcion) {
+                $preguntaModel->opcions()->create([
+                    'texto' => $opcion,
+                    'correcta' => ($opcion === $respuestaCorrecta) ? 1 : 0
+                ]);
+            }
+        }
+        return redirect()->route('textos')->withErrors(['error' => 'Error al guardar las preguntas.']);
     }
 
 
