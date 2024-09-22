@@ -52,7 +52,29 @@ class DocumentoController extends Controller
         return view('agregar-preguntas');
     }
 
-    // Recibe un json con las preguntas y respuestas
+    // Recibe un json con las preguntas y respuestas en el request con el siguiente formato:
+    /*
+        [
+          {
+            "pregunta": "ejemplo1",
+            "opciones": [
+              "1",
+              "2",
+              "3"
+            ],
+            "correcta": "2"
+          },
+          {
+            "pregunta": "ejemplo2",
+            "opciones": [
+              "a",
+              "b",
+              "c"
+            ],
+            "correcta": "a"
+          }
+        ]
+    */
     public function guardarPreguntas(Request $request)
     {
         // Recuperar el ID del documento desde la sesión
