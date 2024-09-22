@@ -7,59 +7,23 @@ use Illuminate\Http\Request;
 
 class NotaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    // Guarda en la base de datos todo lo relacionado a la información
+    // de una nota.
+    public function guardarPrueba(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'prueba_id' => ['required', 'exists:pruebas,id'],
+            'user_id' => ['required', 'exists:user, id'],
+            'valor' => ['required', 'integer'],
+        ]);
+        
+        $prueba = new Nota();
+        $prueba->prueba_id = $request->prueba_id;
+        $prueba->user_id = $request->user_id;
+        $prueba->valor = $request->valor;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        $prueba->save();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Nota $nota)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Nota $nota)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Nota $nota)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Nota $nota)
-    {
-        //
+        return view('principal-view');
     }
 }

@@ -19,4 +19,9 @@ class Documento extends Model
     {
         return $this->hasMany(Pregunta::class);
     }
+
+    public function pruebas()
+    {
+        return $this->hasMany(Prueba::class);
+    }
 }

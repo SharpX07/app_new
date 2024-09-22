@@ -12,7 +12,7 @@
 <body>
     <div class="contenedor">
         <aside class="barra-lateral">
-            <h2>Aula Virtual</h2>
+            <h2>Aula asd</h2>
             <nav>
                 <ul>
                     <li>
@@ -32,6 +32,15 @@
                             <img src="{{ asset('imagenes/cuestionario_icono.png') }}" alt="Icono Cuestionario" class="icono-menu">
                             Añadir Texto
                         </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('crear-prueba') }}">
+                            <img src="{{ asset('imagenes/cuestionario_icono.png') }}" alt="Icono Cuestionario" class="icono-menu">
+                            Añadir Prueba
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ url('/descargar-pdf') }}" class="btn btn-primary">Descargar PDF</a>
                     </li>
                 </ul>
             </nav>
